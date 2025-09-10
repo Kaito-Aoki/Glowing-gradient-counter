@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --b1-color: #4cae4f;
+    --b2-color: #2094f3;
+    --b3-color: #f44034;
+    --fontfamily: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
+}
+
+@property --color1 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #2575fc;
+}
+
+@property --color2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #6a11cb;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+    background: linear-gradient(135deg, var(--color1), var(--color2));
+    animation: bg 4s ease-in-out infinite alternate;
+}
+
+@keyframes bg {
+    0% {
+        --color1: #60ffdd;
+        --color2: #ff8e8e;
+    }
+    100% {
+        --color1: #6a11cb;
+        --color2: #619bff;
+    }
+}
+
+.lb{
+    color: #f8f8ff;
+    font-family: var(--fontfamily);
+    font-size: 5em;
+}
+
+.labelclass{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+
+    place-items: center;
+    height: 20vh;
+    width: 100%;
+
+    position: relative;
+    font-size: 2em;
+}
+
+#countLable{
+    grid-area: 1 / 1;
+}
+
+#iterLable{
+    grid-area: 1 / 1;
+
+}
+
+@keyframes popUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-250px);
+        opacity: 0;
+    }
+}
+
+.pop-animation {
+    color: #f8f8ff;
+    font-family: var(--fontfamily);
+    font-size: 5em;
+
+    animation: popUp 0.8s ease-out forwards;
+}
+
+.positive { color: #00ff88; }
+.negative { color: #ff6b6b; }
+
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+@property --deg {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes rotate {
+    to {
+        --deg: 360deg;
+    }
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+    width: 250px;
+    height: 100px;
+    font-size: 3em;
+    color: #000000;
+
+    margin: 30px;
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+}
+
+.btn::after,
+.btn::before {
+    content: '';
+    position: absolute;
+    background: conic-gradient(from var(--deg) at center,
+            #00ff88,
+            #056639,
+            #71ac90,
+            #00ff88);
+
+    z-index: -2;
+    top: -10px;
+    left: -10px;
+    bottom: -10px;
+    right: -10px;
+
+    opacity: 0;
+    filter: blur(10px);
+    border-radius: inherit;
+    animation: rotate 1.5s linear infinite;
+    animation-play-state: paused;
+
+    ;
+    transition: opacity 105ms;
+}
+
+.btn:hover{
+    top: 3px;
+    left: 3px;
+}
+
+.btn:hover::after {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.btn:hover::before {
+
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+
+    filter: none;
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.b1 {
+    background-color: var(--b1-color);
+}
+
+.b2 {
+    background-color: var(--b2-color);
+}
+
+.b3 {
+    background-color: var(--b3-color);
+}
+
+.b1::after {
+    background: conic-gradient(from var(--deg) at center,
+            #00ff88,
+            #056639,
+            #71ac90,
+            #00ff88);
+}
+
+.b2::after {
+    background: conic-gradient(from var(--deg) at center,
+            #2094f3,
+            #1562a1,
+            #aedaff,
+            #2094f3);
+}
+
+.b3::after {
+    background: conic-gradient(from var(--deg) at center,
+            #f44034,
+            #851e16,
+            #f17e75,
+            #f44034);
+}
+
+.inputContainer{
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputfield {
+    background-color: transparent;
+    margin-left: 50px;
+    width: 100px;
+    height: 100px;
+
+    color: white;
+    font-family: var(--fontfamily);
+
+    outline: none;
+    border-radius: 15px;
+    border-color: white;
+    font-size: 3.5em;
+    text-align: center;
+}
